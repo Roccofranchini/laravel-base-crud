@@ -11278,3 +11278,7 @@ header .active {
   color: #0282f9;
   transform: scale(1.5);
 }
+
+#comic .card-body li {
+  list-style-type: none;
+}
