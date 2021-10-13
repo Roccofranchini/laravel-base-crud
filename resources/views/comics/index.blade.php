@@ -32,5 +32,6 @@
         @endforelse
       </tbody>
     </table>
+    <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi</a>
 </div>
 @endsection

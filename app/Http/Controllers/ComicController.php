@@ -26,7 +26,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        // Per creare una nuova entità restituiamo una view create con l'apposito form
+        return view('comics.create');
     }
 
     /**
@@ -37,7 +38,16 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //raccogliamo utti i dati dellla request
+        $data = $request->all();
+        //creiamo una nuova istanza
+        $comic = new Comic();
+        //la rempiamo con i dati ricevuti
+        $comic->fill($data);
+        //salviamo
+        $comic->save();
+        //restituiamo la view della nuova entità creata
+        return redirect()->route('comics.show', $comic-> id);
     }
 
     /**
@@ -46,9 +56,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
+        // $comic = Comic::findOrFail($id);
 
         return view('comics.show', compact('comic'));
     }
