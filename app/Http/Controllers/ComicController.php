@@ -43,9 +43,12 @@ class ComicController extends Controller
         //creiamo una nuova istanza
         $comic = new Comic();
         //la rempiamo con i dati ricevuti
-        $comic->fill($data);
+        // $comic->fill($data);
         //salviamo
-        $comic->save();
+        // $comic->save();
+
+        //OPPURE
+        $comic = Comic::create($data);
         //restituiamo la view della nuova entità creata
         return redirect()->route('comics.show', $comic-> id);
     }
