@@ -26,8 +26,11 @@ class ComicController extends Controller
      */
     public function create()
     {
+        //creiamo un'istanza vuota per gestire il doppio form per creare/modificare gli elementi
+        $comic = new Comic();
+
         // Per creare una nuova entità restituiamo una view create con l'apposito form
-        return view('comics.create');
+        return view('comics.create', compact('comic'));
     }
 
     /**
