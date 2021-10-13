@@ -32,6 +32,9 @@
         @endforelse
       </tbody>
     </table>
-    <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi</a>
+    <div class="d-flex justify-content-between">
+      <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi</a>
+      <a class="btn btn-primary" href="{{ url()->previous() }}">Indietro</a>
+    </div>
 </div>
 @endsection

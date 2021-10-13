@@ -8,6 +8,7 @@
 
 <div class="container">
     <div class="row mt-4">
+        <div class="col-2 offset-10 text-end"><a class="btn btn-primary" href="{{ url()->previous() }}">Indietro</a></div>
 
         {{-- FORM CREATE, con i name = alle colonne del nostro DB, con metodo Post e una volta inserito @csrf per il token di
             Laravel, specificato "submit" come type del nostro button e indicando nell'action del Form la route comics.store del controller che "salverà questi dati"  --}}
