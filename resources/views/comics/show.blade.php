@@ -4,11 +4,16 @@
 
 @section('section-id', 'comic')
 
+@section('cdns')
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' integrity='sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==' crossorigin='anonymous'/>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-title my-5">
+        <div class="card-title d-flex justify-content-center align-items-baseline my-5">
             <h1 class="text-center">{{$comic->title}}</h1>
+            <small><a href="{{ route('comics.edit', $comic->id) }}"><i class="fas fa-pen text-black ps-3"></i></a></small>
         </div>
         <div class="card-body row">
             <div class="col-3 text-center">

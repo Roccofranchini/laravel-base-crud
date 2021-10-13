@@ -23,7 +23,10 @@
             <td>{{ $comic->price }}</td>
             <td>{{ $comic->series }}</td>
             <td>{{ $comic->sale_date }}</td>
-            <td> <a class="btn btn-primary" href="{{ route('comics.show', $comic->id) }}">Details</a> </td>
+            <td class="d-flex justify-content-end"> 
+              <a class="btn btn-primary me-2" href="{{ route('comics.show', $comic->id) }}">Details</a>
+              <a class="btn btn-secondary" href="{{ route('comics.edit', $comic->id) }}">Edit</a> 
+            </td>
           </tr>
         @empty
             <tr>
