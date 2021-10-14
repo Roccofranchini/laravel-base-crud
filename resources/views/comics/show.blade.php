@@ -32,7 +32,8 @@
                 </div>
             </div>
         </div>
-        <form method="POST" action="{{ route('comics.destroy', $comic->id) }}" id="delete-form" class="my-3 text-center">
+        <form method="POST" action="{{ route('comics.destroy', $comic->id) }}" class="my-3 text-center delete-form"
+            data-comic="{{ $comic->title }}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger ms-2">Delete</button>
@@ -41,19 +42,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-        //individuare l'elemento che fa scattare  l'evento
-        //intercettare un evento
-        //bloccare il comportamento naturale
-        //chiedere all'utente
-        //agire di conseguenza
-
-
-        const deleteFormElement = document.getElementById('delete-form');
-        deleteFormElement.addEventListener('submit', function(e) {
-            e.preventDefault(); //impedisco che parte il form e che riaggiorna diretto la pagina
-            const confirm = window.confirm('Sei sicuro di voler eliminare {{ $comic->title }}?');
-            if (confirm) this.submit();
-        });
-    </script>
+    <script src="{{ asset('js/delete_confirmation.js') }}"></script>
 @endsection
