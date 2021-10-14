@@ -6,6 +6,15 @@
 
 @section('content')
     <div class="container">
+
+        @if (session('delete'))
+            <div class="alert alert-success" role="alert">
+                {{ session('delete') }} eliminato con successo!
+            </div>
+
+        @endif
+
+        <h1 class="text-center">Indice Fumetti</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -26,7 +35,8 @@
                         <td class="d-flex justify-content-end">
                             <a class="btn btn-primary me-2" href="{{ route('comics.show', $comic->id) }}">Details</a>
                             <a class="btn btn-secondary" href="{{ route('comics.edit', $comic->id) }}">Edit</a>
-                            <form method="POST" action="{{ route('comics.destroy', $comic->id) }}">
+                            <form method="POST" action="{{ route('comics.destroy', $comic->id) }}" class="delete-form"
+                                data-comic="{{ $comic->title }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger ms-2">Delete</button>
@@ -45,4 +55,28 @@
             <a class="btn btn-primary" href="{{ url()->previous() }}">Indietro</a>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        //individuare l'elemento che fa scattare  l'evento
+        //intercettare un evento
+        //bloccare il comportamento naturale
+        //chiedere all'utente
+        //agire di conseguenza
+
+
+        const deleteFormElements = document.querySelectorAll('.delete-form');
+        deleteFormElements.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                const title = form.getAttribute('data-comic')
+                e.preventDefault(); //impedisco che parte il form e che riaggiorna diretto la pagina
+                const confirm = window.confirm(`Sei sicuro di voler eliminare ${title} ?`);
+                if (confirm) this.submit();
+
+            })
+
+
+        });
+    </script>
 @endsection

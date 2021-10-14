@@ -4,6 +4,8 @@
 
 @section('section-id', 'create')
 
+@section('aggiungi-modifica', 'Aggiungi')
+
 @section('content')
 
     <div class="container">

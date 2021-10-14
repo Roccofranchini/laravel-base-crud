@@ -39,5 +39,5 @@ Laravel, specificato "submit" come type del nostro button e indicando nell'actio
      <input type="text" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}"
          placeholder="">
  </div>
- <button type="submit" class="btn btn-dark text-center d-block">Modifica</button>
+ <button type="submit" class="btn btn-dark text-center d-block">@yield('aggiungi-modifica')</button>
  </form>
