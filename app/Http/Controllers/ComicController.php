@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
@@ -40,7 +41,20 @@ class ComicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        // VALIDAZIONE
+        $request->validate([
+            'title' => 'required|string|unique:comics|max:255',
+            'thumb' => 'required|string|unique:comics|max:255',
+            'price' => 'required|numeric|max:255'
+        ],
+            //messagi degli errori
+        [
+            'required' =>"You must fill the :attribute field",
+            'title.unique' => "Il fumetto $request->title esiste già"
+        ]);
+
         //raccogliamo utti i dati dellla request
         $data = $request->all();
         //creiamo una nuova istanza
@@ -90,6 +104,21 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+         // VALIDAZIONE
+         $request->validate([
+             'price' => 'required|numeric|max:255',
+             'description' => 'required|string|max:255',
+
+             'title' => ['required',  'string', Rule::unique('comics')->ignore($comic->id), 'max:255'],
+             'thumb' => ['required',  'string', Rule::unique('comics')->ignore($comic->id), 'max:255'],
+
+            ],
+            //messagi degli errori
+        [
+            'required' =>"You must fill the :attribute field",
+            'title.unique' => "Il fumetto $request->title esiste già"
+        ]);
+
         $data = $request->all();
         
         $comic->update($data);
