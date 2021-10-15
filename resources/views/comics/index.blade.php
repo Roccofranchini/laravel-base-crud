@@ -18,6 +18,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">thumb</th>
                     <th scope="col">title</th>
                     <th scope="col">price</th>
                     <th scope="col">type</th>
@@ -28,15 +29,19 @@
             <tbody>
                 @forelse ($comics as $comic)
                     <tr>
+                        <td>
+                            <img src="{{ $comic->thumb }}" height="60" alt="">
+                        </td>
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->price }}</td>
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->sale_date }}</td>
-                        <td class="d-flex justify-content-end">
+                        <td class="text-end
+                        ">
                             <a class="btn btn-primary me-2" href="{{ route('comics.show', $comic->id) }}">Details</a>
                             <a class="btn btn-secondary" href="{{ route('comics.edit', $comic->id) }}">Edit</a>
-                            <form method="POST" action="{{ route('comics.destroy', $comic->id) }}" class="delete-form"
-                                data-comic="{{ $comic->title }}">
+                            <form method="POST" action="{{ route('comics.destroy', $comic->id) }}"
+                                class="delete-form d-inline-block" data-comic="{{ $comic->title }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger ms-2">Delete</button>
